@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Granny Horror Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #d00;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #aaa;
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+    .stealth-btn {
+      background-color: #d00; 
+      color: white; 
+      padding: 20px 40px; 
+      font-size: 22px; 
+      font-weight: bold; 
+      border: none; 
+      cursor: pointer; 
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(221, 0, 0, 0.6);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .stealth-btn:hover {
+      background-color: #a00;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Granny Horror Game</h1>
+  <p>Click the button below to launch the game in an un-trackable, cloaked browser tab.</p>
+
+  <button class="stealth-btn" onclick="stealthLaunch()">
+    PLAY GRANNY
+  </button>
+
+  <script>
+    function stealthLaunch() {
+      // 1. Open a completely blank tab that extensions can't easily track
+      var win = window.open();
+      
+      // If the browser blocks the pop-up, let the user know
+      if (!win) {
+        alert("Pop-up blocked! Look at the right side of your browser's address bar, click the blocked pop-up icon, and select 'Always allow'.");
+        return;
+      }
+      
+      // 2. Style the new blank tab so it looks clean
+      win.document.body.style.margin = '0';
+      win.document.body.style.height = '100vh';
+      win.document.body.style.backgroundColor = '#111';
+      win.document.title = 'My Drive - Google Drive'; // Fake title to trick teachers looking at your screen
+      
+      // 3. Create the game element inside the hidden tab
+      var iframe = win.document.createElement('iframe');
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      
+      // Using the unblocked CrazyGames stream
+      iframe.src = 'https://www.crazygames.com/embed/creepy-granny-scream-scary-freddy';
+      iframe.setAttribute('allowfullscreen', 'true');
+      
+      // 4. Inject it into the page
+      win.document.body.appendChild(iframe);
+    }
+  </script>
+
+</body>
+</html>
